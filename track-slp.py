@@ -22,8 +22,6 @@ from datetime import date
 #nk = 60
 
 # ctl info
-#xdef     456 linear    132.00002     0.0300000
-#ydef     444 linear     23.00000     0.0300000
 xini = 120.00000
 xinc = 0.0300000
 yini = 15.50000
@@ -33,11 +31,10 @@ avoid_internal_error = 0.01 # tentative approach to avoid mismatch of array size
 
 tim_start = 5
 tim_end   = 217
-# INFO: time range for test data is from 71 to 77
 
-
+# for YDK
 datadir = '/home1/kitano/cress/work/nanmadol'
-indir       = datadir+'/work_N300/out'  # input netcdf file dir
+indir   = datadir+'/work_N300/out'  # input netcdf file dir
 
 basename_3d = 'nanmadol.dmp'
 basename_2d = 'nanmadol.mon'
@@ -77,7 +74,6 @@ def land_masking(var, alt): # var: target variable, alt: altitude [m]
 #---------------------------------------------------------------
 
 # open grads binary file
-
 #-----------------------------------------------
 ga1 = GaNum(Bin='grads -b')
 ga1.open(indir+'/'+basename_3d+'.ctl')
@@ -117,8 +113,8 @@ if( nj2 != nj ):
    sys.exit("nj and nj2 are not consistent!")
 
 # generate 2 2d grids for the x & y bounds
-ilon = np.arange(xini, (ni-0.5)*xinc + xini, xinc) # tentative
-ilat = np.arange(yini, (nj-1)*yinc + yini, yinc)   # tentative
+ilon = np.arange(xini, (ni)*xinc + xini, xinc)   # tentative
+ilat = np.arange(yini, (nj)*yinc + yini, yinc)   # tentative
 print( ilon.shape, ilat.shape )
 
 
